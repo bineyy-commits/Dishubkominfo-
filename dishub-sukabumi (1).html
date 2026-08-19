@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dishub Kominfo Kabupaten Sukabumi — Apa yang Kami Lakukan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --asphalt:#1C232B;
+    --asphalt-2:#262f39;
+    --paper:#F6F3EC;
+    --paper-dim:#EAE6DA;
+    --route-yellow:#F4B93C;
+    --signage-blue:#2C5C8A;
+    --safety-orange:#E1602A;
+    --ink:#21262B;
+    --ink-soft:#5B6470;
+    --line:#D9D3C3;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Public Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+    margin:0;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  a{color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1400px;margin:0 auto;padding:0 40px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ===== dashed road stripe utility ===== */
+  .road-rule{
+    height:4px;
+    background-image:repeating-linear-gradient(90deg, var(--route-yellow) 0 24px, transparent 24px 44px);
+  }
+
+  /* ===== top bar ===== */
+  .topbar{
+    background:var(--asphalt);
+    color:var(--paper);
+  }
+  .topbar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 40px;
+    max-width:1400px;
+    margin:0 auto;
+    font-size:13px;
+  }
+  .topbar-inner .mono{opacity:.75; letter-spacing:.04em;}
+  .topbar nav{display:flex; gap:22px;}
+  .topbar nav a{
+    text-decoration:none;
+    font-family:'Oswald', sans-serif;
+    font-size:13px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    opacity:.85;
+    border-bottom:2px solid transparent;
+    padding-bottom:2px;
+    transition:opacity .2s, border-color .2s;
+  }
+  .topbar nav a:hover{opacity:1; border-color:var(--route-yellow);}
+
+  /* ===== hero ===== */
+  .hero{
+    background:
+      radial-gradient(circle at 85% 15%, rgba(244,185,60,0.10), transparent 45%),
+      var(--asphalt);
+    color:var(--paper);
+    position:relative;
+    overflow:hidden;
+    padding:64px 0 56px;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--route-yellow);
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:2px;
+    background:var(--route-yellow);
+    display:inline-block;
+  }
+  .hero h1{
+    font-size:clamp(34px, 5vw, 54px);
+    line-height:1.05;
+    font-weight:700;
+  }
+  .hero h1 span{color:var(--route-yellow);}
+  .hero p.lead{
+    font-family:'Public Sans', sans-serif;
+    text-transform:none;
+    color:#C9CDD3;
+    font-size:16.5px;
+    max-width:44ch;
+    margin-top:18px;
+  }
+  .hero-actions{
+    display:flex;
+    gap:12px;
+    margin-top:30px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    font-size:14px;
+    padding:13px 22px;
+    border-radius:3px;
+    text-decoration:none;
+    border:2px solid transparent;
+    transition:transform .15s ease, background .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{background:var(--route-yellow); color:var(--asphalt); font-weight:600;}
+  .btn-primary:hover{background:#ffca57;}
+  .btn-ghost{border-color:rgba(246,243,236,0.35); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--paper);}
+
+  /* plate card */
+  .plate{
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:8px;
+    padding:26px 26px 22px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    position:relative;
+    border:1px solid rgba(0,0,0,0.06);
+  }
+  .plate::before{
+    content:"";
+    position:absolute; top:0; left:0; right:0; height:8px;
+    background:repeating-linear-gradient(90deg, var(--asphalt) 0 14px, var(--route-yellow) 14px 22px);
+    border-radius:8px 8px 0 0;
+  }
+  .plate .kop{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.14em;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    margin-top:10px;
+  }
+  .plate .kode{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:44px;
+    font-weight:600;
+    letter-spacing:.02em;
+    margin:6px 0 4px;
+    color:var(--asphalt);
+  }
+  .plate .lokasi{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:15px;
+    color:var(--signage-blue);
+    letter-spacing:.04em;
+  }
+  .plate hr{
+    border:none; border-top:1px dashed var(--line); margin:16px 0;
+  }
+  .plate dl{margin:0; font-size:13.5px;}
+  .plate dl div{display:flex; justify-content:space-between; padding:5px 0;}
+  .plate dt{color:var(--ink-soft);}
+  .plate dd{margin:0; font-family:'IBM Plex Mono', monospace; text-align:right;}
+
+  /* ===== section basics ===== */
+  section{padding:72px 0;}
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:40px;
+    flex-wrap:wrap;
+  }
+  .section-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--signage-blue);
+    letter-spacing:.1em;
+  }
+  .section-head h2{
+    font-size:clamp(26px,3.4vw,36px);
+    color:var(--asphalt);
+  }
+  .section-desc{
+    max-width:34ch;
+    color:var(--ink-soft);
+    font-size:14.5px;
+  }
+
+  /* about */
+  .about{background:var(--paper);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+  }
+  .about-grid p{color:var(--ink-soft); margin:0 0 14px;}
+  .fn-list{list-style:none; margin:20px 0 0; padding:0; display:grid; gap:10px;}
+  .fn-list li{
+    display:flex; gap:12px; align-items:flex-start;
+    font-size:14.5px;
+    padding:10px 0;
+    border-top:1px solid var(--line);
+  }
+  .fn-list li:first-child{border-top:none;}
+  .fn-list .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--paper);
+    background:var(--signage-blue);
+    padding:2px 7px;
+    border-radius:3px;
+    flex-shrink:0;
+    margin-top:2px;
+    letter-spacing:.05em;
+  }
+  .legal-box{
+    background:var(--asphalt);
+    color:var(--paper);
+    border-radius:8px;
+    padding:24px;
+    font-size:13.5px;
+  }
+  .legal-box .mono{color:var(--route-yellow); font-size:12px; letter-spacing:.08em; text-transform:uppercase; display:block; margin-bottom:10px;}
+  .legal-box p{color:#C9CDD3; margin:0;}
+
+  /* ===== dua jalur tugas ===== */
+  .lanes{background:var(--paper-dim);}
+  .lane-track{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:0;
+    border-radius:10px;
+    overflow:hidden;
+    border:1px solid var(--line);
+  }
+  .lane{
+    background:var(--paper);
+    padding:32px 30px 30px;
+    position:relative;
+  }
+  .lane + .lane{border-left:3px dashed var(--line);}
+  .lane-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:.1em; text-transform:uppercase;
+    padding:4px 10px; border-radius:3px;
+    margin-bottom:16px;
+  }
+  .lane.jalan .lane-tag{background:var(--signage-blue); color:var(--paper);}
+  .lane.digital .lane-tag{background:var(--safety-orange); color:var(--paper);}
+  .lane h3{
+    font-size:24px;
+    margin-bottom:10px;
+    color:var(--asphalt);
+  }
+  .lane > p{color:var(--ink-soft); font-size:14px; margin:0 0 20px; max-width:38ch;}
+  .lane-items{list-style:none; margin:0; padding:0; display:grid; gap:0;}
+  .lane-items li{
+    padding:13px 0;
+    border-top:1px dashed var(--line);
+    font-size:14px;
+  }
+  .lane-items li:first-child{border-top:none;}
+  .lane-items b{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    font-size:13.5px;
+    letter-spacing:.03em;
+    color:var(--asphalt);
+    margin-bottom:3px;
+  }
+  .lane-items span{color:var(--ink-soft); font-size:13.5px;}
+  @media (max-width: 860px){
+    .lane-track{grid-template-columns:1fr;}
+    .lane + .lane{border-left:none; border-top:3px dashed var(--line);}
+  }
+
+  /* ===== galeri ilustrasi ===== */
+  .gallery{background:var(--asphalt); padding-bottom:76px;}
+  .gallery .section-head{align-items:flex-start;}
+  .gallery .section-num, .gallery .section-desc{color:#9AA3AE;}
+  .gallery .section-head h2{color:var(--paper);}
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr;
+    gap:18px;
+  }
+  .gcard{
+    background:var(--paper);
+    border-radius:10px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+  }
+  .gcard .frame{
+    aspect-ratio:4/3;
+    background:linear-gradient(160deg, #EFEBDF, #E2DDCC);
+  }
+  .gcard .frame svg{width:100%; height:100%;}
+  .gcard .cap{
+    padding:14px 16px 16px;
+  }
+  .gcard .cap b{
+    display:block;
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    font-size:14px;
+    color:var(--asphalt);
+    margin-bottom:4px;
+  }
+  .gcard .cap span{
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .gallery-foot{
+    margin-top:18px;
+    font-size:12.5px;
+    color:#9AA3AE;
+    max-width:70ch;
+  }
+  @media (max-width: 860px){
+    .gallery-grid{grid-template-columns:1fr;}
+  }
+
+  /* ===== route / services (signature element) ===== */
+  .route{background:var(--asphalt); color:var(--paper); position:relative;}
+  .route .section-num, .route .section-desc{color:#9AA3AE;}
+  .route .section-head h2{color:var(--paper);}
+
+  .route-line{
+    position:relative;
+    padding-left:38px;
+  }
+  .route-line::before{
+    content:"";
+    position:absolute;
+    left:9px; top:6px; bottom:6px; width:2px;
+    background-image:repeating-linear-gradient(180deg, var(--route-yellow) 0 10px, transparent 10px 20px);
+  }
+  .stop{
+    position:relative;
+    padding:0 0 42px 26px;
+  }
+  .stop:last-child{padding-bottom:0;}
+  .stop::before{
+    content:"";
+    position:absolute;
+    left:-20px; top:2px;
+    width:20px; height:20px;
+    border-radius:50%;
+    background:var(--asphalt);
+    border:3px solid var(--route-yellow);
+  }
+  .stop-code{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--route-yellow);
+    letter-spacing:.1em;
+  }
+  .stop h3{
+    font-size:20px;
+    margin:6px 0 8px;
+    color:var(--paper);
+  }
+  .stop p{
+    color:#B8BFC8;
+    font-size:14.5px;
+    max-width:60ch;
+    margin:0;
+  }
+  .stop .badge{
+    display:inline-block;
+    margin-top:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    color:var(--asphalt);
+    background:var(--paper);
+    padding:4px 10px;
+    border-radius:3px;
+    letter-spacing:.04em;
+  }
+
+  /* ===== hours + contact ===== */
+  .info{background:var(--paper);}
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+  }
+  .info-card{
+    background:var(--paper);
+    padding:26px 24px;
+  }
+  .info-card .mono{
+    font-size:11px;
+    letter-spacing:.1em;
+    color:var(--signage-blue);
+    text-transform:uppercase;
+    display:block;
+    margin-bottom:14px;
+  }
+  .info-card h3{
+    font-size:18px;
+    margin-bottom:12px;
+    color:var(--asphalt);
+  }
+  .hours-row{display:flex; justify-content:space-between; font-size:13.5px; padding:6px 0; border-top:1px dashed var(--line);}
+  .hours-row:first-of-type{border-top:none;}
+  .hours-row span:last-child{font-family:'IBM Plex Mono', monospace; color:var(--ink-soft);}
+  .contact-row{display:flex; gap:10px; align-items:flex-start; font-size:13.5px; padding:8px 0; border-top:1px dashed var(--line);}
+  .contact-row:first-of-type{border-top:none;}
+  .contact-row .ic{color:var(--safety-orange); font-family:'IBM Plex Mono', monospace; font-size:12px; flex-shrink:0; width:18px;}
+  .clink{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .clink:hover{color:var(--signage-blue); border-color:var(--signage-blue);}
+
+  /* ===== map ===== */
+  .map-wrap{
+    border-radius:8px;
+    overflow:hidden;
+    border:1px solid var(--line);
+    height:340px;
+  }
+  .map-wrap iframe{width:100%; height:100%; border:0;}
+
+  /* ===== footer ===== */
+  footer{
+    background:var(--asphalt);
+    color:#9AA3AE;
+    padding:36px 0;
+    font-size:13px;
+  }
+  .footer-inner{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .footer-inner .mono{letter-spacing:.05em;}
+
+  /* responsive */
+  @media (max-width: 860px){
+    .hero-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    .topbar nav{display:none;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--route-yellow);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="mono">PEMERINTAH KABUPATEN SUKABUMI</span>
+    <nav>
+      <a href="#tugas">Apa yang Dilakukan</a>
+      <a href="#tentang">Tentang</a>
+      <a href="#layanan">Layanan</a>
+      <a href="#kontak">Jam &amp; Kontak</a>
+      <a href="#lokasi">Lokasi</a>
+    </nav>
+  </div>
+</div>
+<div class="road-rule"></div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Dinas Perhubungan, Komunikasi &amp; Informatika · Kabupaten Sukabumi</div>
+      <h1>Mengatur arah <span>jalan</span>, menjaga arus <span>informasi</span>.</h1>
+      <p class="lead">Dishub Kominfo Kabupaten Sukabumi mengelola dua jalur sekaligus: lalu lintas &amp; angkutan di jalan raya, dan arus komunikasi &amp; informasi publik di ruang digital.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#tugas">Apa yang Kami Lakukan</a>
+        <a class="btn btn-ghost" href="#lokasi">Lihat Lokasi</a>
+      </div>
+    </div>
+
+    <div class="plate">
+      <div class="kop">Alamat Kantor</div>
+      <div class="kode">43157</div>
+      <div class="lokasi">Sukamulya, Cikembar</div>
+      <hr>
+      <dl>
+        <div><dt>Jalan</dt><dd>Perintis Kemerdekaan</dd></div>
+        <div><dt>Desa</dt><dd>Sukamulya</dd></div>
+        <div><dt>Kecamatan</dt><dd>Cikembar</dd></div>
+        <div><dt>Kabupaten</dt><dd>Sukabumi</dd></div>
+        <div><dt>Provinsi</dt><dd>Jawa Barat</dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+<div class="road-rule"></div>
+
+<section class="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">Galeri</span>
+        <h2>Dua Wajah Layanan</h2>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="gcard">
+        <div class="frame">
+          <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="300" fill="#EFEBDF"/>
+            <rect x="0" y="210" width="400" height="90" fill="#DCD6C4"/>
+            <rect x="60" y="70" width="280" height="140" fill="#F6F3EC" stroke="#1C232B" stroke-width="3"/>
+            <rect x="60" y="70" width="280" height="18" fill="#1C232B"/>
+            <rect x="90" y="110" width="26" height="55" fill="#2C5C8A"/>
+            <rect x="140" y="110" width="26" height="55" fill="#2C5C8A"/>
+            <rect x="190" y="110" width="26" height="55" fill="#2C5C8A"/>
+            <rect x="240" y="110" width="26" height="55" fill="#2C5C8A"/>
+            <rect x="284" y="95" width="40" height="70" fill="#E1602A"/>
+            <rect x="184" y="165" width="32" height="45" fill="#1C232B"/>
+            <line x1="330" y1="70" x2="330" y2="40" stroke="#1C232B" stroke-width="3"/>
+            <rect x="330" y="30" width="26" height="14" fill="#E1602A"/>
+            <rect x="0" y="235" width="400" height="6" fill="#F4B93C" opacity="0.9"/>
+            <rect x="0" y="255" width="400" height="45" fill="#C9C2AD"/>
+            <g stroke="#F6F3EC" stroke-width="5">
+              <line x1="10" y1="277" x2="40" y2="277"/>
+              <line x1="60" y1="277" x2="90" y2="277"/>
+              <line x1="110" y1="277" x2="140" y2="277"/>
+              <line x1="160" y1="277" x2="190" y2="277"/>
+              <line x1="210" y1="277" x2="240" y2="277"/>
+              <line x1="260" y1="277" x2="290" y2="277"/>
+              <line x1="310" y1="277" x2="340" y2="277"/>
+              <line x1="360" y1="277" x2="390" y2="277"/>
+            </g>
+          </svg>
+        </div>
+        <div class="cap">
+          <b>Ilustrasi — Gedung Kantor</b>
+          <span>Kantor Dishub Kominfo di Jl. Perintis Kemerdekaan, Cikembar.</span>
+        </div>
+      </div>
+
+      <div class="gcard">
+        <div class="frame">
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#E2DDCC"/>
+            <rect x="0" y="220" width="300" height="80" fill="#3A4149"/>
+            <rect x="0" y="215" width="300" height="6" fill="#F4B93C"/>
+            <line x1="150" y1="220" x2="150" y2="40" stroke="#1C232B" stroke-width="6"/>
+            <circle cx="150" cy="45" r="26" fill="#1C232B"/>
+            <circle cx="150" cy="33" r="7" fill="#E1602A"/>
+            <circle cx="150" cy="45" r="7" fill="#F4B93C"/>
+            <circle cx="150" cy="57" r="7" fill="#3FA66A"/>
+            <rect x="60" y="130" width="90" height="20" fill="#2C5C8A"/>
+            <rect x="150" y="160" width="90" height="20" fill="#2C5C8A"/>
+          </svg>
+        </div>
+        <div class="cap">
+          <b>Ilustrasi — Jalur Perhubungan</b>
+          <span>Pengaturan rambu, sinyal, dan lalu lintas jalan.</span>
+        </div>
+      </div>
+
+      <div class="gcard">
+        <div class="frame">
+          <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <rect width="300" height="300" fill="#EFEBDF"/>
+            <line x1="150" y1="230" x2="150" y2="90" stroke="#1C232B" stroke-width="6"/>
+            <rect x="120" y="230" width="60" height="16" fill="#1C232B"/>
+            <circle cx="150" cy="90" r="9" fill="#E1602A"/>
+            <path d="M150 90 a40 40 0 0 1 40 40" fill="none" stroke="#2C5C8A" stroke-width="5"/>
+            <path d="M150 90 a60 60 0 0 1 60 60" fill="none" stroke="#2C5C8A" stroke-width="5" opacity="0.6"/>
+            <path d="M150 90 a-40 40 0 0 0 -40 40" fill="none" stroke="#2C5C8A" stroke-width="5"/>
+            <path d="M150 90 a-60 60 0 0 0 -60 60" fill="none" stroke="#2C5C8A" stroke-width="5" opacity="0.6"/>
+            <rect x="90" y="245" width="120" height="14" fill="#F4B93C"/>
+          </svg>
+        </div>
+        <div class="cap">
+          <b>Ilustrasi — Jalur Kominfo</b>
+          <span>Menara sinyal untuk layanan komunikasi &amp; informasi publik.</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="gallery-foot">Catatan: gambar di atas adalah ilustrasi bergaya, bukan foto asli kantor. Kirimkan foto resmi jika ingin ditampilkan sebagai foto asli di halaman ini.</p>
+  </div>
+</section>
+<div class="road-rule"></div>
+
+<section class="lanes" id="tugas">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">01 — Apa yang Dilakukan</span>
+        <h2>Dua Jalur, Satu Dinas</h2>
+      </div>
+      <p class="section-desc">Dishub Kominfo menjalankan dua urusan pemerintahan sekaligus dalam satu susunan organisasi.</p>
+    </div>
+
+    <div class="lane-track">
+      <div class="lane jalan">
+        <span class="lane-tag">Jalur 01 · Perhubungan</span>
+        <h3>Mengatur Lalu Lintas &amp; Angkutan</h3>
+        <p>Urusan yang berkaitan dengan pergerakan orang dan barang di jalan raya.</p>
+        <ul class="lane-items">
+          <li><b>Kebijakan Perhubungan</b><span>Merumuskan kebijakan dan aturan teknis lalu lintas di wilayah kabupaten.</span></li>
+          <li><b>Perizinan Angkutan</b><span>Mengelola izin trayek dan operasional angkutan umum maupun barang.</span></li>
+          <li><b>Prasarana Jalan</b><span>Mengelola rambu, marka, terminal, dan fasilitas pendukung lalu lintas.</span></li>
+          <li><b>Uji Kendaraan &amp; Pengawasan</b><span>Melakukan pengujian kendaraan bermotor dan pengawasan di lapangan.</span></li>
+        </ul>
+      </div>
+      <div class="lane digital">
+        <span class="lane-tag">Jalur 02 · Kominfo</span>
+        <h3>Mengelola Komunikasi &amp; Informasi</h3>
+        <p>Urusan yang berkaitan dengan arus informasi publik dan layanan digital pemerintah.</p>
+        <ul class="lane-items">
+          <li><b>Informasi Publik</b><span>Mengelola diseminasi informasi resmi pemerintah kepada masyarakat.</span></li>
+          <li><b>Aplikasi Informatika</b><span>Mengembangkan dan mengelola sistem e-government di lingkup pemerintah daerah.</span></li>
+          <li><b>Statistik Sektoral</b><span>Mengumpulkan dan mengelola data statistik untuk kebutuhan perencanaan daerah.</span></li>
+          <li><b>Pos &amp; Persandian</b><span>Mengawasi layanan pos, telekomunikasi, serta pengamanan informasi pemerintah.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="legal-box" style="margin-top:28px;">
+      <span class="mono">Catatan Sejarah Kelembagaan</span>
+      <p>Berdasarkan Keputusan Bupati Sukabumi Nomor 582 Tahun 2002, urusan perhubungan serta komunikasi dan informatika sempat dikelola dalam satu dinas bernama Dinas Perhubungan, Komunikasi dan Informatika (Dishubkominfo) Kabupaten Sukabumi, sebelum struktur organisasi menyesuaikan perkembangan regulasi pusat dan daerah.</p>
+    </div>
+  </div>
+</section>
+<div class="road-rule"></div>
+
+<section class="about" id="tentang">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">02 — Profil</span>
+        <h2>Tentang Dinas Perhubungan</h2>
+      </div>
+      <p class="section-desc">Dibentuk untuk mengelola urusan perhubungan di daerah, dari kebijakan hingga pengawasan lapangan.</p>
+    </div>
+
+    <div class="about-grid">
+      <div>
+        <p>Dinas Perhubungan (Dishub) Kabupaten Sukabumi adalah perangkat daerah yang bertanggung jawab atas urusan perhubungan dan transportasi di wilayah Kabupaten Sukabumi. Dinas ini dipimpin oleh seorang Kepala Dinas yang berkedudukan di bawah dan bertanggung jawab kepada Bupati melalui Sekretaris Daerah.</p>
+        <p>Susunan organisasi dan tata kerja Dishub Kabupaten Sukabumi mengacu pada Keputusan Bupati Sukabumi Nomor 582 Tahun 2002, yang telah beberapa kali menyesuaikan struktur organisasinya seiring perkembangan regulasi pusat dan daerah, tanpa mengubah nomenklatur dinas itu sendiri.</p>
+        <p>Selain menangani lalu lintas darat, Dishub juga berperan dalam menyiapkan sumber daya manusia bidang transportasi melalui kerja sama dengan sekolah kedinasan seperti Sekolah Tinggi Transportasi Darat (STTD), serta rutin menggelar program tahunan seperti mudik gratis bekerja sama dengan Kementerian Perhubungan.</p>
+
+        <ul class="fn-list">
+          <li><span class="tag">FN.1</span> Merumuskan kebijakan bidang perhubungan di wilayah Kabupaten Sukabumi</li>
+          <li><span class="tag">FN.2</span> Menyusun kebijakan teknis bidang perhubungan</li>
+          <li><span class="tag">FN.3</span> Menyelenggarakan administrasi, termasuk perizinan angkutan</li>
+          <li><span class="tag">FN.4</span> Melakukan evaluasi dan pelaporan bidang perhubungan</li>
+        </ul>
+      </div>
+
+      <div class="legal-box">
+        <span class="mono">Dasar Hukum</span>
+        <p>Organisasi dan tata kerja Dinas Perhubungan Kabupaten Sukabumi ditetapkan melalui Keputusan Bupati Sukabumi Nomor 582 Tahun 2002 tentang Organisasi dan Tata Kerja Dinas Perhubungan Kabupaten Sukabumi.</p>
+        <hr style="border-color:rgba(255,255,255,0.12); margin:18px 0;">
+        <span class="mono">Wilayah Kerja</span>
+        <p>Seluruh wilayah administratif Kabupaten Sukabumi, Provinsi Jawa Barat — di luar wilayah Kota Sukabumi yang memiliki Dishub tersendiri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="route" id="layanan">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">03 — Trayek Layanan</span>
+        <h2>Layanan Publik</h2>
+      </div>
+      <p class="section-desc">Disusun seperti rute — setiap pemberhentian adalah satu titik layanan yang dapat diakses masyarakat.</p>
+    </div>
+
+    <div class="route-line">
+      <div class="stop">
+        <span class="stop-code">HALTE 01</span>
+        <h3>SIPALALIN</h3>
+        <p>Sistem Pelayanan Analisis Dampak Lalu Lintas — layanan untuk pengurusan dokumen analisis dampak lalu lintas (andalalin) atas suatu rencana pembangunan atau kegiatan.</p>
+        <span class="badge">Layanan Daring</span>
+      </div>
+      <div class="stop">
+        <span class="stop-code">HALTE 02</span>
+        <h3>Sistem Informasi Prasarana Perhubungan Darat</h3>
+        <p>Layanan informasi terkait prasarana perhubungan darat di wilayah Kabupaten Sukabumi, mendukung perencanaan dan pemantauan fasilitas transportasi.</p>
+        <span class="badge">Layanan Daring</span>
+      </div>
+      <div class="stop">
+        <span class="stop-code">HALTE 03</span>
+        <h3>Perizinan Angkutan</h3>
+        <p>Pengurusan administrasi dan perizinan yang berkaitan dengan penyelenggaraan angkutan umum maupun angkutan barang di wilayah kabupaten.</p>
+        <span class="badge">Layanan Loket</span>
+      </div>
+      <div class="stop">
+        <span class="stop-code">HALTE 04</span>
+        <h3>Informasi Publik &amp; PPID</h3>
+        <p>Layanan penyediaan dan pengelolaan informasi publik pemerintah daerah, termasuk kanal keterbukaan informasi yang dapat diakses masyarakat.</p>
+        <span class="badge">Bidang Kominfo</span>
+      </div>
+      <div class="stop">
+        <span class="stop-code">HALTE 05</span>
+        <h3>Pengaduan, Saran &amp; Survei Kepuasan</h3>
+        <p>Kanal aduan masyarakat, penyampaian saran, serta Survei Kepuasan Masyarakat (SKM) terhadap pelayanan Dishub Kominfo Kabupaten Sukabumi.</p>
+        <span class="badge">Layanan Daring</span>
+      </div>
+      <div class="stop">
+        <span class="stop-code">HALTE 06</span>
+        <h3>Program Mudik Gratis</h3>
+        <p>Program tahunan pada musim mudik lebaran, diselenggarakan bekerja sama dengan Kementerian Perhubungan untuk jalur darat, laut, maupun udara.</p>
+        <span class="badge">Musiman</span>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="road-rule"></div>
+
+<section class="info" id="kontak">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">04 — Jadwal & Kontak</span>
+        <h2>Jam Operasional</h2>
+      </div>
+      <p class="section-desc">Kantor melayani sesuai jam kerja pemerintah daerah. Hubungi kontak resmi untuk informasi lebih lanjut.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <span class="mono">Jam Layanan</span>
+        <h3>Senin – Jumat</h3>
+        <div class="hours-row"><span>Senin – Kamis</span><span>08.00 – 16.00</span></div>
+        <div class="hours-row"><span>Jumat</span><span>08.00 – 16.30</span></div>
+        <div class="hours-row"><span>Sabtu – Minggu</span><span>Tutup</span></div>
+        <div class="hours-row"><span>Hari Libur Nasional</span><span>Tutup</span></div>
+      </div>
+
+      <div class="info-card">
+        <span class="mono">Kontak Resmi</span>
+        <h3>Hubungi Kami</h3>
+        <div class="contact-row"><span class="ic">TEL</span><a class="clink" href="tel:0266320255">(0266) 320255</a></div>
+        <div class="contact-row"><span class="ic">SUR</span><a class="clink mono" href="mailto:dishub@dishub.sukabumikab.go.id">dishub@dishub.sukabumikab.go.id</a></div>
+        <div class="contact-row"><span class="ic">WEB</span><a class="clink mono" href="https://dishub.sukabumikab.go.id" target="_blank" rel="noopener">dishub.sukabumikab.go.id</a></div>
+      </div>
+
+      <div class="info-card">
+        <span class="mono">Alamat Lengkap</span>
+        <h3>Kantor Dishub</h3>
+        <p style="font-size:13.5px; color:var(--ink-soft); margin:0;">
+          Jl. Perintis Kemerdekaan, Desa Sukamulya,<br>
+          Kecamatan Cikembar,<br>
+          Kabupaten Sukabumi, Jawa Barat<br>
+          <span class="mono" style="color:var(--asphalt);">43157</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lokasi" style="padding-top:0;">
+  <div class="wrap">
+    <div class="section-head">
+      <div>
+        <span class="section-num">05 — Peta</span>
+        <h2>Lokasi Kantor</h2>
+      </div>
+      <p class="section-desc">Terletak di ruas Jalan Perintis Kemerdekaan, Cikembar.</p>
+    </div>
+    <div class="map-wrap">
+      <iframe
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps/place/3Q4C%2BMP7+Dinas+Perhubungan+Kabupaten+Sukabumi,+Jalan+Perintis+Kemerdekaan,+Cikembar,+Sukamulya,+Sukabumi,+Kabupaten+Sukabumi,+Jawa+Barat+43157/data=!4m2!3m1!1s0x2e6830fb061d2a95:0x80bf45bacb71217!18m1!1e1?output=embed">
+      </iframe>
+    </div>
+    <a class="clink mono" style="display:inline-block; margin-top:14px; font-size:13px;"
+       href="https://maps.app.goo.gl/uYuPTAfc96GkQExZ8"
+       target="_blank" rel="noopener">Buka di Google Maps →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">© 2026 DISHUB KOMINFO KABUPATEN SUKABUMI</span>
+    <span class="mono">JL. PERINTIS KEMERDEKAAN · CIKEMBAR · 43157</span>
+  </div>
+</footer>
+
+</body>
+</html>
